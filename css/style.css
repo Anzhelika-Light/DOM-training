@@ -1,0 +1,67 @@
+/* Task 5.1.4 */
+/* .container {
+  width: 50%;
+  margin: 0 auto;
+}
+
+.value {
+  height: 25px;
+  text-align: center;
+} */
+
+/* Task 5.4.1 */
+/* .output {
+  text-align: center;
+} */
+
+/* Task 5.5.5 */
+/* .text {
+  resize: none;
+  display: block;
+  margin-bottom: 20px;
+} */
+
+/* Task 5.6.1 */
+/* .active {
+  color: rgb(255, 0, 183);
+  font-weight: 900;
+} */
+
+/* Task 5.6.4 */
+/* .container {
+  display: flex;
+  width: 100px;
+  height: 30px;
+  border: 2px solid blue;
+  justify-content: center;
+  align-items: center;
+} */
+
+/* Task 5.6.5 */
+.container {
+  border: 1px solid aquamarine;
+  width: 300px;
+  height: 50px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  margin-top: 30px;
+  position: relative;
+}
+
+.link {
+  text-decoration: none;
+  text-align: center;
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  border: 2px solid aqua;
+}
+
+.link:hover,
+.link:focus {
+  border-color: blue;
+  color: blue;
+  transform: scale(1.2);
+}
