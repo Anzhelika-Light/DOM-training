@@ -436,22 +436,283 @@
 // containerEl.addEventListener('mouseover', onLinkElClick);
 
 // Task 5.7.1
+// const numbers = [2, 4, 1, 5, 7, 8, 0, 4, 3];
+// const listEl = document.querySelector('.js-list');
+// const inputEl = document.querySelector('.js-input');
+// const btnEl = document.querySelector('.js-btn');
+
+// const markup = numbers
+//   .map(
+//     el => `
+// <li class='js-list__item'>${el}</li>
+// `
+//   )
+//   .join('');
+
+// listEl.innerHTML = markup;
+
+// const onBtnElClick = event => {
+//   const itemsEls = listEl.querySelectorAll('.js-list__item');
+//   const result = [...itemsEls].reduce((sum, el) => sum + parseInt(el.textContent), 0);
+//   inputEl.value = result;
+// };
+
+// btnEl.addEventListener('click', onBtnElClick);
+
 // Task 5.7.2
+// const numbers = [2, 4, 1, 5, 7, 8, 0, 4, 3];
+// const listEl = document.querySelector('.js-list');
+// const btnEl = document.querySelector('.js-btn');
+
+// const markup = numbers
+//   .map(
+//     el => `
+// <li class='js-list__item'>${el}</li>
+// `
+//   )
+//   .join('');
+
+// listEl.innerHTML = markup;
+
+// const onBtnElClick = event => {
+//   const itemsEls = listEl.querySelectorAll('.js-list__item');
+//   itemsEls.forEach(el => (el.textContent = parseInt(el.textContent) + 1));
+// };
+
+// btnEl.addEventListener('click', onBtnElClick);
+
 // Task 5.7.3
+// const inputEl = document.querySelector('.js-input');
+// const outputEl = document.querySelector('.js-output');
+// const btnEl = document.querySelector('.js-btn');
+
+// const onBtnElClick = event => {
+//   const number = inputEl.value;
+//   if (number <= 0) {
+//     outputEl.textContent = 'введіть натуральне число.';
+//     inputEl.value = '';
+//     return;
+//   }
+//   const arr = [];
+//   for (let i = 1; i <= Math.floor(number / 2); i += 1) {
+//     if (!(number % i)) {
+//       arr.push(i);
+//     }
+//   }
+//   arr.push(number);
+//   outputEl.textContent = [...arr];
+//   inputEl.value = '';
+// };
+
+// btnEl.addEventListener('click', onBtnElClick);
+
 // Task 5.7.4
+// const paragraphs = [
+//   `Lorem ipsum dolor sit amet consectetur adipisicing elit. Odio amet quaerat minima reprehenderit
+// illum debitis rem? Architecto aut rerum officiis, earum repudiandae atque. Dicta!`,
+//   `Lorem ipsum dolor sit amet consectetur adipisicing elit. Odio amet quaerat minima reprehenderit
+// illum debitis rem? Architect, earum repudiandae atque. Dicta nesciunt,
+// minima vitae deserunt architecto inventore!`,
+//   `Lorem ipsum dolor sit amet consectetur adipisicing elit. Odio amet quaerat minima reprehenderit
+// illum debitis rem? Architecto aut rerum officiis, earum repudiandae atque. Dicta nesciunt,
+// minima vitae deserunt architecto inventore!rchitecto aut rerum officiis, earum repudiandae atque. Dicta nesciunt,
+// minima vitae deserunt architecto inventore!rchitecto aut rerum officiis, earum repudiandae atque. Dicta nesciunt,
+// minima vitae deserunt architecto inventore!`,
+//   `Lorem elit. Odio amet quaerat minima reprehenderit
+// illum debitis rem? Architecto aut rerum officiis, earum repudiandae atque. Dicta nesciunt,
+// minima vitae deserunt architecto inventore!`,
+//   `Lorem ipsum dolor sit amet consectetur adipisicing elit. Odio amet quaerat minima reprehenderit
+// illum debitis rem? Architecto, earum repudiandae atque. Dicta nesciunt,
+// minima vitae deserunt architecto inventore!`,
+//   `Lorem ipsum dolor sit amet consectetur adipisicing elit. Odio amet quaerat minima reprehenderit
+// illum debitis rem? Architecto aut rerum officiis, earum repudiandae atque. Dicta nesciunt,
+// minima vitae deserunt architecto inventore!`,
+// ];
+
+// const markup = [...paragraphs]
+//   .map(
+//     el => `
+// <p class='js-text'>${el}</p>
+// `
+//   )
+//   .join('');
+
+// const containerEl = document.querySelector('.js-container');
+
+// containerEl.innerHTML = markup;
+
+// let prevTargetItem = null;
+
+// const onTextElClick = event => {
+//   const { target } = event;
+
+//   if (target.nodeName !== 'P') {
+//     return;
+//   }
+
+//   if (target === prevTargetItem) {
+//     target.classList.toggle('flipped');
+//     return;
+//   }
+
+//   if (prevTargetItem !== null) {
+//     prevTargetItem.classList.remove('flipped');
+//   }
+//   target.classList.add('flipped');
+//   prevTargetItem = target;
+// };
+
+// containerEl.addEventListener('click', onTextElClick);
+
 // Task 5.7.5
-// Task 5.8.1
+// const inputEl = document.querySelector('.js-input');
+// const btnEl = document.querySelector('.js-btn');
+
+// const onBtnElClick = () => {
+//   const number = +inputEl.value;
+//   const secondThreeLetters = number % 1000;
+//   const firstThreeLetters = (number - secondThreeLetters) / 1000;
+
+//   const firstThreeLettersSum = String(firstThreeLetters)
+//     .split('')
+//     .reduce((sum, el) => sum + Number(el), 0);
+
+//   const secondThreeLettersSum = String(secondThreeLetters)
+//     .split('')
+//     .reduce((sum, el) => sum + Number(el), 0);
+//   console.log(firstThreeLettersSum === secondThreeLettersSum);
+//   inputEl.value = '';
+// };
+
+// btnEl.addEventListener('click', onBtnElClick);
+
+// Task 5.8.1 //FOCUSIN / FOCUSOUT
+// const containerEl = document.querySelector('.js-container');
+
+// const onInputElBlur = event => {
+//   const { target } = event;
+//   if (target.nodeName !== 'INPUT') {
+//     return;
+//   }
+//   if (target.value !== '') {
+//     target.value = Math.pow(+target.value, 2);
+//   }
+// };
+
+// containerEl.addEventListener('focusout', onInputElBlur);
+
 // Task 5.8.2
+
 // Task 5.8.3
+
 // Task 5.8.4
+// const firstInputEl = document.querySelector('.js-first-input');
+// const secondInputEl = document.querySelector('.js-second-input');
+// const btnEl = document.querySelector('.js-btn');
+
+// const findDividers = num => {
+//   const dividersArr = [];
+//   for (let i = 1; i <= Math.floor(num / 2); i += 1) {
+//     if (!(num % i)) {
+//       dividersArr.push(i);
+//     }
+//   }
+//   dividersArr.push(num);
+//   return dividersArr;
+// };
+
+// const onBtnElClick = () => {
+//   const firstNum = +firstInputEl.value;
+//   const secondNum = +secondInputEl.value;
+//   if (firstNum <= 0 || secondNum <= 0) {
+//     console.log('Enter only natural numbers.');
+//   }
+//   const firstNumDividersArr = findDividers(firstNum);
+//   const secondNumDividersArr = findDividers(secondNum);
+//   const commonDividersArr = [...firstNumDividersArr, ...secondNumDividersArr].filter(
+//     (el, index, arr) => arr.indexOf(el) !== index
+//   );
+//   console.log(`Common dividers of ${firstNum} and ${secondNum} are:`, commonDividersArr);
+//   firstInputEl.value = '';
+//   secondInputEl.value = '';
+// };
+
+// btnEl.addEventListener('click', onBtnElClick);
+
 // Task 5.8.5
+// const inputEl = document.querySelector('.js-input');
+// const btnEl = document.querySelector('.js-btn');
+
+// const onBtnElClick = event => {
+//   const arr = inputEl.value.split(',').map(el => Number(el));
+//   console.log(arr.includes(13));
+// };
+
+// btnEl.addEventListener('click', onBtnElClick);
+
 // Task 5.8.6
+// См. 5.7.5
+
 // Task 5.9.1
+// const arr = [1, 2, 3, 4, 5, 6, 7, 8];
+// const inputEl = document.querySelector('.js-input');
+// const btnEl = document.querySelector('.js-btn');
+
+// const onBtnElClick = event => {
+//   inputEl.value = [...arr];
+// };
+
+// btnEl.addEventListener('click', onBtnElClick);
+
 // Task 5.9.2
+// См. 5.7.4
+
 // Task 5.9.3
+// const inputEl = document.querySelector('.js-input');
+
+// const onTextFieldInput = event => {
+//   const { target } = event;
+
+//   +target.value % 2 ? (target.style.borderColor = 'red') : (target.style.borderColor = 'green');
+// };
+
+// inputEl.addEventListener('input', onTextFieldInput);
+
 // Task 5.9.4
+// const inputEl = document.querySelector('.js-input');
+
+// const onInputBlur = event => {
+//   const { target } = event;
+//   const valueInNewFormat = target.value.split('-').reverse().join('.');
+//   target.value = valueInNewFormat;
+// };
+
+// inputEl.addEventListener('focusout', onInputBlur);
+
 // Task 5.9.5
+// const textareaEl = document.querySelector('.js-text');
+// const listEl = document.querySelector('.js-list');
+
+// const onTextareaChange = event => {
+//   const { target } = event;
+//   const regexp = /[\.!?]/;
+//   const arr = target.value.split(regexp).filter(el => el !== ''); //Почему без фильтра последний элемент массива ''?
+//   const markup = arr
+//     .map(
+//       el => `
+//   <li class='list__item js-list__item'>${el}</li>
+//   `
+//     )
+//     .join('');
+//   listEl.insertAdjacentHTML('beforeend', markup);
+//   console.log(arr);
+// };
+
+// textareaEl.addEventListener('change', onTextareaChange);
+
 // Task 5.10.1
+// См. 5.9.3
+
 // Task 5.10.2
 // Task 5.10.3
 // Task 5.10.4
