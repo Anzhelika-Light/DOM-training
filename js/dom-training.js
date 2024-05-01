@@ -714,7 +714,489 @@
 // См. 5.9.3
 
 // Task 5.10.2
+// const arr = [2, 4, 5, 2, 7];
+
+// const getRandomNum = (min, max) => {
+//   return Math.floor(Math.random() * (max - min) + min);
+// };
+
+// const btnEl = document.querySelector('.js-btn');
+
+// const onBtnElClick = event => {
+//   const randomNum = getRandomNum(20, 100);
+//   arr.push(randomNum);
+//   console.log(arr);
+// };
+
+// btnEl.addEventListener('click', onBtnElClick);
+
 // Task 5.10.3
+// const colors = [
+//   'rgb(127, 255, 212)',
+//   'rgb(255, 150, 13)',
+//   'rgb(130, 200, 255)',
+//   'rgb(125, 125, 125)',
+//   'rgb(150, 179, 240)',
+//   'rgb(150, 179, 10)',
+//   'rgb(200, 179, 30)',
+//   'rgb(100, 150, 200)',
+//   'rgb(190, 170, 250)',
+//   'rgb(240, 199, 250)',
+//   'rgb(200, 255, 220)',
+//   'rgb(190, 179, 230)',
+// ];
+
+// const containerEl = document.querySelector('.js-container');
+
+// const getRandomColor = arr => {
+//   return Math.floor(Math.random() * arr.length);
+// };
+
+// const onTextClick = event => {
+//   const { target } = event;
+//   if (target.nodeName !== 'P') {
+//     return;
+//   }
+//   target.style.backgroundColor = colors[getRandomColor(colors)];
+// };
+
+// containerEl.addEventListener('click', onTextClick);
+
 // Task 5.10.4
+// const arr = [23, 45, 36, 58, 2, 78, 2, 456, 358, 35, 25];
+
+// const btnEl = document.querySelector('.js-btn');
+// const outputEl = document.querySelector('.js-output');
+
+// const onBtnElClick = event => {
+//   const result = arr.filter(el => el % 2 === 0);
+//   outputEl.textContent = result;
+// };
+
+// btnEl.addEventListener('click', onBtnElClick);
+
 // Task 5.10.5
+// const btnEl = document.querySelector('.js-btn');
+// const outputEl = document.querySelector('.js-output');
+
+// const onBtnElClick = event => {
+//   const nowDate = new Date();
+//   const newYearDate = new Date(nowDate.getFullYear(), 11, 31);
+//   const daysLeft = Number(((newYearDate - nowDate) / (1000 * 3600 * 24)).toFixed());
+//   outputEl.textContent = daysLeft;
+// };
+
+// btnEl.addEventListener('click', onBtnElClick);
+
 // Task 5.10.6
+
+// Task 6.1.1
+// const arr = [
+//   `Українське село. До криниці підійшов чоловік і схилився, щоб випити води. Підбіг дід і застерігає:
+// — Чоловіче, не пий! Москалі воду отруїли!
+// — Что ти гаваріш?
+// — Я говорю: пий мєдлено, вода холодна, горло застудиш.`,
+//   `Гуцул іде по полонині і веде за руку хлопчика-негра. Другий гуцул:
+//   — Іване, а хто то?
+//   — Онук.
+//   — Марійчин хлопець?
+//   — Марійчин!
+//   — А Марійка де?
+//   — Вчиться в місті.
+//   — А чого воно таке чорне?
+//   — Зате гарантія, що не москаль!`,
+//   `- Вуйку Стефане, вуйку Стефане! Що то ви робите?! Навіщо ви берізку рубаєте? Така струнка, молоденька, так око зеленими листочками милувала, а ви її геть!
+//   - Ой, сусіде, й не кажіть, в самого серце кров'ю обливається, але мушу те зробити - прийдуть москалі, побачать берізку і скажуть: "Родіна"...`,
+// ];
+
+// const listEl = document.querySelector('.js-list');
+// const btnEl = document.querySelector('.js-btn');
+
+// const onBtnElClick = array => {
+//   const markup = array
+//     .map(
+//       el => `
+//     <li class='js-list__item'>${el}</li>
+//     `
+//     )
+//     .join('');
+
+//   listEl.insertAdjacentHTML('afterbegin', markup);
+// };
+
+// btnEl.addEventListener('click', () => onBtnElClick(arr));
+
+// Task 6.1.2
+// const listEl = document.querySelector('.js-list');
+// const btnEl = document.querySelector('.js-btn');
+
+// const onBtnElClick = n => {
+//   const markup = [...Array(n)].map((_, idx) => `<li>${idx + 1}</li>`).join('');
+//   listEl.insertAdjacentHTML('beforeend', markup);
+// };
+
+// btnEl.addEventListener('click', () => onBtnElClick(13));
+
+// Task 6.1.3
+// const listEl = document.querySelector('.js-list');
+// const btnEl = document.querySelector('.js-btn');
+
+// const onBtnElClick = () => {
+//   const markup = `<li>!</li>`;
+//   listEl.insertAdjacentHTML('beforeend', markup);
+// };
+
+// btnEl.addEventListener('click', onBtnElClick);
+
+// Task 6.1.4 ?????????????????
+// const listEl = document.querySelector('.js-list');
+// const btnEl = document.querySelector('.js-btn');
+
+// const onBtnElClick = event => {
+//   const markup = `<li class='js-list__item'>1</li>`;
+//   listEl.insertAdjacentHTML('beforeend', markup);
+// };
+
+// btnEl.addEventListener('click', onBtnElClick);
+
+// Task 6.1.5
+// const listEl = document.querySelector('.js-list');
+// const btnEl = document.querySelector('.js-btn');
+
+// const onBtnElClick = () => {
+//   listEl.lastElementChild.remove();
+//   };
+
+// btnEl.addEventListener('click', onBtnElClick);
+
+// Task 6.1.6
+// // const listItemEls = document.querySelectorAll('.js-list__item');
+// const listItemEls = document.getElementsByClassName('js-list__item');
+// const btnEl = document.querySelector('.js-btn');
+
+// const randomIdx = arr => {
+//   return Math.floor(Math.random() * arr.length);
+// };
+
+// const onBtnElClick = () => {
+//   listItemEls[randomIdx([...listItemEls])].remove();
+// };
+
+// btnEl.addEventListener('click', onBtnElClick);
+
+// Task 6.2.1
+
+// // const table = {
+// //   cols: 5,
+// //   rows: 10,
+// // };
+// const btnEl = document.querySelector('.js-btn');
+// const containerEl = document.querySelector('.js-container');
+
+// const buildTable = (parent, cols, rows) => {
+//   const table = document.createElement('table');
+//   table.classList.add('table');
+
+//   for (let i = 1; i <= rows; i += 1) {
+//     let tr = document.createElement('tr');
+
+//     for (let j = 1; j <= cols; j += 1) {
+//       let td = document.createElement('td');
+//       td.classList.add('td');
+
+//       tr.append(td);
+//     }
+//     table.append(tr);
+//   }
+//   parent.append(table);
+// };
+
+// const onBtnElClick = () => {
+//   buildTable(containerEl, 10, 20);
+// };
+
+// btnEl.addEventListener('click', onBtnElClick);
+
+// Task 6.2.2 ??????????????????
+
+// const btnEl = document.querySelector('.js-btn');
+// const containerEl = document.querySelector('.js-container');
+
+// let tdCount = 0;
+// let arr = [];
+
+// const buildTable = (parent, cols, rows) => {
+//   const table = document.createElement('table');
+//   table.classList.add('table');
+
+//   for (let i = 1; i <= rows; i += 1) {
+//     let tr = document.createElement('tr');
+
+//     for (let j = 1; j <= cols; j += 1) {
+//       let td = document.createElement('td');
+//       tdCount += 1;
+
+//       td.classList.add('td');
+
+//       arr = [...Array(tdCount)].map((_, idx) => (td.textContent = idx + 1));
+//       console.log(arr); // Как сделать, чтобы не создавать массив заново на каждой итерации
+
+//       tr.append(td);
+//     }
+
+//     table.append(tr);
+//   }
+
+//   parent.append(table);
+// };
+
+// const onBtnElClick = () => {
+//   buildTable(containerEl, 3, 5);
+// };
+
+// btnEl.addEventListener('click', onBtnElClick);
+
+// Task 6.2.3
+// const btnEl = document.querySelector('.js-btn');
+// const containerEl = document.querySelector('.js-container');
+
+// const buildTable = (parent, cols, rows) => {
+//   const table = document.createElement('table');
+//   table.classList.add('table');
+
+//   for (let i = 1; i <= rows; i += 1) {
+//     let tr = document.createElement('tr');
+
+//     for (let j = 1; j <= cols; j += 1) {
+//       let td = document.createElement('td');
+//       td.classList.add('td');
+//       td.textContent = `${i} ${j}`;
+
+//       tr.append(td);
+//     }
+//     table.append(tr);
+//   }
+//   parent.append(table);
+// };
+
+// const onBtnElClick = () => {
+//   buildTable(containerEl, 3, 5);
+// };
+
+// btnEl.addEventListener('click', onBtnElClick);
+
+// Task 6.2.4
+// const arr = [
+//   [1, 2, 3],
+//   [4, 5, 6],
+//   [7, 8, 9],
+// ];
+
+// const btnEl = document.querySelector('.js-btn');
+// const containerEl = document.querySelector('.js-container');
+
+// const buildTable = (parent, array) => {
+//   const table = document.createElement('table');
+//   table.classList.add('table');
+
+//   const rows = array.length;
+//   const cols = array.flat().length / arr.length;
+
+//   for (let i = 1; i <= rows; i += 1) {
+//     let tr = document.createElement('tr');
+
+//     for (let j = 1; j <= cols; j += 1) {
+//       let td = document.createElement('td');
+//       td.classList.add('td');
+//       td.textContent = `${array[i - 1][j - 1]}`;
+
+//       tr.append(td);
+//     }
+//     table.append(tr);
+//   }
+//   parent.append(table);
+// };
+
+// const onBtnElClick = () => {
+//   buildTable(containerEl, arr);
+// };
+
+// btnEl.addEventListener('click', onBtnElClick);
+
+// Task 6.3.1
+// const textEl = document.querySelector('.js-text');
+// const btnEl = document.querySelector('.js-btn');
+
+// const onBtnElClick = event => {
+//   let n = +btnEl.getAttribute('data-counter');
+//   if (!(n % 2)) {
+//     textEl.classList.add('green');
+//   } else {
+//     textEl.classList.remove('green');
+//     textEl.classList.add('red');
+//   }
+
+//   n++;
+//   btnEl.setAttribute('data-counter', n);
+// };
+
+// btnEl.addEventListener('click', onBtnElClick);
+
+// Task 6.3.2???????????????? Как сделать, чтобы номер добавлялся только 1 раз?
+// const listEl = document.querySelector('.js-list');
+
+// const onListItemElClick = event => {
+//   const { target } = event;
+
+//   const num = [...listEl.children].indexOf(target) + 1;
+
+//   const numEl = document.createElement('span');
+//   numEl.classList.add('js-num');
+//   numEl.textContent = num;
+//   target.append('-', numEl);
+// };
+
+// listEl.addEventListener('click', onListItemElClick);
+
+// Task 6.3.3
+// const listEl = document.querySelector('.js-list');
+
+// const onListItemElClick = event => {
+//   const { target } = event;
+//   if (event.ctrlKey) {
+//     target.remove();
+//   }
+// };
+
+// listEl.addEventListener('click', onListItemElClick);
+
+// Task 6.3.4
+// const numEl = document.querySelector('.js-num');
+// const btnEl = document.querySelector('.js-btn');
+
+// let startNum = +numEl.textContent;
+
+// const increment = () => {
+//   startNum += 1;
+//   numEl.textContent = startNum;
+// };
+
+// const onBtnElClick = event => {
+//   setInterval(() => increment(), 1000);
+// };
+
+// btnEl.addEventListener('click', onBtnElClick);
+
+// Task 6.3.5 ??????????????????/
+// const inputEl = document.querySelector('.js-input');
+// const outputEl = document.querySelector('.js-output');
+
+// const onInputElInput = event => {
+//   const nowDate = new Date();
+//   const inputDate = new Date(inputEl.value); // Почему Invalid Date?
+//   console.log(inputDate);
+//   if (nowDate - inputDate > 0) {
+//     outputEl.textContent = 'Yes';
+//   } else outputEl.textContent = 'No';
+// };
+
+// inputEl.addEventListener('input', onInputElInput);
+
+// Task 6.4.1
+// const listEl = document.querySelector('.js-list');
+
+// const onListItemClick = event => {
+//   const { target } = event;
+//   target.remove();
+// };
+
+// listEl.addEventListener('click', onListItemClick);
+
+// Task 6.4.2 ????? target / inputEl?
+// const listEl = document.querySelector('.js-list');
+// const inputEl = document.querySelector('.js-input');
+
+// const onInputElBlur = event => {
+//   const { target } = event;
+//   const inputValue = target.value;
+//   listEl.insertAdjacentHTML('beforeend', `<li>${inputValue}</li>`);
+//   target.value = '';
+// };
+
+// inputEl.addEventListener('focusout', onInputElBlur);
+
+// Task 6.4.3
+// const btnEl = document.querySelector('.js-btn');
+// const tableEl = document.querySelector('.js-table');
+
+// const inputEls = document.querySelectorAll('.js-input');
+
+// const createMarkup = () => {
+//   const markup = [...inputEls]
+//     .map(
+//       el => `
+//   <td class="td js-td">${el.value}</td>
+// `
+//     )
+//     .join('');
+
+//   return markup;
+// };
+
+// const onBtnElClick = event => {
+//   tableEl.insertAdjacentHTML('beforeend', createMarkup());
+//   inputEls.forEach(el => (el.value = ''));
+// };
+
+// btnEl.addEventListener('click', onBtnElClick);
+
+// Task 6.4.4?????????????????????????
+const inputEl = document.querySelector('.js-input');
+const listEl = document.querySelector('.js-list');
+const spanEl = document.querySelector('.js-year');
+
+const onInputElChange = event => {
+  const year = inputEl.value;
+  spanEl.innerHTML = year;
+
+  const nowYearFirstDay = new Date(year, 0, 1);
+  const nowYearLastDay = new Date(year, 11, 31);
+
+  for (let i = nowYearFirstDay; i <= nowYearLastDay; i += 1000 * 3600 * 24) {
+    if (i.getDay() === 5 && i.getDate() === 13) {
+      console.log(i);
+      listEl.insertAdjacentHTML('beforeend', `<li>${i}</li>`);
+    }
+  }
+};
+
+inputEl.addEventListener('change', onInputElChange);
+
+// Task 6.5.1
+// Task 6.5.2
+// Task 6.5.3
+// Task 6.5.4
+// Task 6.5.5
+
+// Task 6.6.1
+// Task 6.6.2
+// Task 6.6.3
+// Task 6.6.4
+
+// Task 6.7.1
+// Task 6.7.2
+// Task 6.7.3
+// Task 6.7.4
+
+// Task 6.8.1
+// Task 6.8.2
+
+// Task 6.9.1
+// Task 6.9.2
+// Task 6.9.3
+// Task 6.9.4
+
+// Task 6.10.1
+// Task 6.10.2
+// Task 6.10.3
+// Task 6.10.4
