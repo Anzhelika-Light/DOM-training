@@ -1150,38 +1150,216 @@
 
 // btnEl.addEventListener('click', onBtnElClick);
 
-// Task 6.4.4?????????????????????????
-const inputEl = document.querySelector('.js-input');
-const listEl = document.querySelector('.js-list');
-const spanEl = document.querySelector('.js-year');
+// Task 6.4.4
+// const inputEl = document.querySelector('.js-input');
+// const listEl = document.querySelector('.js-list');
+// const spanEl = document.querySelector('.js-year');
 
-const onInputElChange = event => {
-  const year = inputEl.value;
-  spanEl.innerHTML = year;
+// const onInputElChange = event => {
+//   const year = inputEl.value;
+//   spanEl.innerHTML = year;
 
-  const nowYearFirstDay = new Date(year, 0, 1);
-  const nowYearLastDay = new Date(year, 11, 31);
+//   let res = [];
+//   for (let month = 0; month < 12; month += 1) {
+//     let date = new Date(year, month, 13);
+//     if (date.getDay() === 5) res.push(date);
+//   }
 
-  for (let i = nowYearFirstDay; i <= nowYearLastDay; i += 1000 * 3600 * 24) {
-    if (i.getDay() === 5 && i.getDate() === 13) {
-      console.log(i);
-      listEl.insertAdjacentHTML('beforeend', `<li>${i}</li>`);
-    }
-  }
-};
+//   const markup = res.map(el => `<li>${el}</li>`).join('');
 
-inputEl.addEventListener('change', onInputElChange);
+//   listEl.insertAdjacentHTML('beforeend', markup);
+// };
+
+// inputEl.addEventListener('change', onInputElChange);
 
 // Task 6.5.1
+// const inputEl = document.querySelector('.js-input');
+// const outputEl = document.querySelector('.js-output');
+
+// const onInputElChange = event => {
+//   const { target } = event;
+//   const nowDate = new Date();
+//   const birthDate = new Date(target.value);
+
+//   const age = ((nowDate.getTime() - birthDate.getTime()) / (1000 * 3600 * 24 * 365)).toFixed();
+//   outputEl.textContent = age;
+// };
+
+// inputEl.addEventListener('change', onInputElChange);
+
 // Task 6.5.2
-// Task 6.5.3
-// Task 6.5.4
-// Task 6.5.5
+// const inputEl = document.querySelector('.js-input');
+// const outputEl = document.querySelector('.js-output');
+
+// const onInputElInput = event => {
+//   const { target } = event;
+//   const res = target.value
+//     .split(',')
+//     .filter(el => el !== '')
+//     .reduce((sum, el) => sum + parseInt(el), 0);
+//   outputEl.textContent = res;
+// };
+
+// inputEl.addEventListener('input', onInputElInput);
+
+// // Task 6.5.3????????????????????????//
+// const btnEl = document.querySelector('.js-btn');
+// const outputEl = document.querySelector('.js-output');
+
+// // const markup = () => `<input class='input js-input' type='text'/>`;
+
+// // const onBtnElClick = event => {
+// //   btnEl.insertAdjacentHTML('afterend', markup());
+// // };
+
+// const onBtnElClick = event => {
+//   const inputEl = document.createElement('input');
+//   inputEl.classList.add('input', 'js-input');
+//   inputEl.type = 'text';
+//   inputEl.addEventListener('input', onInputElInput);
+//   btnEl.after(inputEl);
+
+// };
+
+// const onInputElInput = event => {
+//   console.log(inputEl.value);
+// };
+
+// btnEl.addEventListener('click', onBtnElClick);
+
+// Task 6.5.4?????????????????? Правильно ли решила?
+// const containerEl = document.querySelector('.js-container');
+// const inputEls = document.querySelectorAll('.js-input');
+// const btnEl = document.querySelector('.js-btn');
+
+// // const arr = [];
+// // let res = 0;
+
+// // const onInputElChange = event => {
+// //   const { target } = event;
+// //   arr.push(target.value);
+// //   const res = arr.reduce((sum, el) => sum + parseInt(el), 0);
+// //   console.log(arr);
+// //   console.log(res);
+// //   return res;
+// // };
+
+// // containerEl.addEventListener('change', onInputElChange);
+
+// const onBtnElClick = () => {
+//   const res = [...inputEls]
+//     .map(el => el.value)
+//     .filter(el => el !== '')
+//     .reduce((sum, el) => sum + parseInt(el), 0);
+//   console.log(res);
+//   btnEl.textContent = res;
+// };
+
+// btnEl.addEventListener('click', onBtnElClick);
+
+// Task 6.5.5 ????????????????/ Как сделать для любого к-ва инпутов? Как в 6.5.4?
+// const containerEl = document.querySelector('.js-container');
+// const firstInputEl = document.querySelector('.js-first-input');
+// const secondInputEl = document.querySelector('.js-second-input');
+// const btnEl = document.querySelector('.js-btn');
+// const outputEl = document.querySelector('.js-output');
+
+// const onBtnElClick = () => {
+//   const firstInputValuesArr = firstInputEl.value.trim().split(',');
+//   const secondInputValuesArr = secondInputEl.value.trim().split(',');
+//   const res = firstInputValuesArr.filter(el => secondInputValuesArr.includes(el));
+//   outputEl.innerHTML = res;
+// };
+
+// btnEl.addEventListener('click', onBtnElClick);
 
 // Task 6.6.1
+// const arr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+
+// const inputEl = document.querySelector('.js-input');
+// const btnEl = document.querySelector('.js-btn');
+// const outputEl = document.querySelector('.js-output');
+
+// const onBtnElClick = () => {
+//   const idx = +inputEl.value;
+//   const res = arr[idx];
+//   outputEl.textContent = res;
+//   inputEl.value = '';
+// };
+
+// btnEl.addEventListener('click', onBtnElClick);
+
 // Task 6.6.2
+// const colors = [
+//   'rgb(127, 255, 212)',
+//   'rgb(255, 150, 13)',
+//   'rgb(130, 200, 255)',
+//   'rgb(125, 125, 125)',
+//   'rgb(150, 179, 240)',
+//   'rgb(150, 179, 10)',
+//   'rgb(200, 179, 30)',
+//   'rgb(100, 150, 200)',
+//   'rgb(190, 170, 250)',
+//   'rgb(240, 199, 250)',
+//   'rgb(200, 255, 220)',
+//   'rgb(190, 179, 230)',
+// ];
+
+// const btnEl = document.querySelector('.js-btn');
+// const textEl = document.querySelector('.js-text');
+
+// const randomColor = arr => {
+//   const idx = Math.floor(Math.random() * arr.length);
+//   return arr[idx];
+// };
+
+// const onBtnElClick = event => {
+//   textEl.style.backgroundColor = randomColor(colors);
+// };
+
+// btnEl.addEventListener('click', onBtnElClick);
+
 // Task 6.6.3
-// Task 6.6.4
+// const colors = [
+//   'rgb(127, 255, 212)',
+//   'rgb(255, 150, 13)',
+//   'rgb(130, 200, 255)',
+//   'rgb(125, 125, 125)',
+//   'rgb(150, 179, 240)',
+//   'rgb(150, 179, 10)',
+//   'rgb(200, 179, 30)',
+//   'rgb(100, 150, 200)',
+//   'rgb(190, 170, 250)',
+//   'rgb(240, 199, 250)',
+//   'rgb(200, 255, 220)',
+//   'rgb(190, 179, 230)',
+// ];
+
+// const tbodyEl = document.querySelector('.js-tbody');
+
+// const randomColor = arr => {
+//   const idx = Math.floor(Math.random() * arr.length);
+//   return arr[idx];
+// };
+
+// const onTBodyElClick = event => {
+//   const { target } = event;
+//   target.style.backgroundColor = randomColor(colors);
+// };
+
+// tbodyEl.addEventListener('click', onTBodyElClick);
+
+// Task 6.6.4??????????????????Как отследить одновременное нажатие?
+// const textEl = document.querySelector('.js-text');
+// const outputEl = document.querySelector('.js-output');
+
+// const onKeydown = event => {
+//   if (event.shiftKey || event.code === 'Enter') {
+//     console.log('success');
+//   }
+// };
+
+// document.addEventListener('keydown', onKeydown);
 
 // Task 6.7.1
 // Task 6.7.2

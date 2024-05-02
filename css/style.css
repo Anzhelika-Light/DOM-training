@@ -115,7 +115,7 @@
 } */
 
 /* Task 6.4.1 */
-.table {
+/* .table {
   border-collapse: collapse;
   margin-top: 30px;
   width: 50%;
@@ -124,4 +124,47 @@
 .table .td {
   padding: 10px 20px;
   border: 1px solid black;
+} */
+
+/* Task 6.5.3 */
+/* .btn {
+  display: block;
+  margin-bottom: 20px;
+}
+
+.input {
+  margin-right: 20px;
+} */
+
+/* Task 6.5.5 */
+/* .btn {
+  display: block;
+  margin-bottom: 20px;
+  margin-top: 20px;
+}
+
+.input {
+  margin-right: 20px;
+} */
+
+/* Task 6.6.2 */
+/* .text {
+  width: 50%;
+} */
+
+/* Task 6.6.3 */
+/* .table {
+  margin-top: 20px;
+  border-collapse: collapse;
+}
+
+.table .td,
+.table .th {
+  padding: 10px 20px;
+  border: 1px solid black;
+} */
+
+/* Task 6.6.4 */
+.text {
+  resize: none;
 }
