@@ -72,7 +72,7 @@
 
 // const onInputElBlur = event => {
 //   const { target } = event;
-//   target.value = Math.pow(target.value, 2);
+//   target.value = target.value ** 2;
 // };
 
 // inputEl.forEach(el => el.addEventListener('blur', onInputElBlur));
@@ -81,7 +81,7 @@
 // const outputEl = document.querySelector('.js-output');
 // const btnEl = document.querySelector('.js-btn');
 
-// const onBtnElClick = event => {
+// const onBtnElClick = () => {
 //   const result = (100 * (100 + 1)) / 2;
 //   outputEl.textContent = result;
 // };
@@ -203,20 +203,33 @@
 
 // const containerEl = document.querySelector('.js-container');
 
-// const createParagraphes = arr => {
-//   const items = [];
-//   for (let i = 0; i < arr.length; i += 1) {
-//     const color = getRandomHexColor();
-//     const item = document.createElement('p');
-//     item.style.backgroundColor = color;
-//     item.classList.add('output', 'js-output');
-//     item.textContent = arr[i];
-//     items.push(item);
-//   }
-//   containerEl.append(...items);
-//   // const markup = arr.map(el => `<p class='js-output'>${el}</p>`).join('');
-//   // return markup;
-// };
+// // const createParagraph = content => {
+// //     const pEl = document.createElement('p');
+// //     pEl.style.backgroundColor = getRandomHexColor();
+// //     pEl.textContent = content;
+// // return pEl;
+// // }
+
+// const createParagraph = content =>
+//   `<p style='background-color: ${getRandomHexColor()}'>${content}</p>`;
+
+// const markup = numbers.map(el => createParagraph(el)).join('');
+// containerEl.insertAdjacentHTML('afterbegin', markup);
+
+// // const createParagraphes = arr => {
+// //   const items = [];
+// //   for (let i = 0; i < arr.length; i += 1) {
+// //     const color = getRandomHexColor();
+// //     const item = document.createElement('p');
+// //     item.style.backgroundColor = color;
+// //     item.classList.add('output', 'js-output');
+// //     item.textContent = arr[i];
+// //     items.push(item);
+// //   }
+// //   containerEl.append(...items);
+// // const markup = arr.map(el => `<p class='js-output'>${el}</p>`).join('');
+// // return markup;
+// // };
 
 // const getRandomHexColor = () => {
 //   const randomColor = '#' + Math.floor(Math.random() * 16777215).toString(16);
@@ -372,18 +385,21 @@
 // const outputNotLeapEl = document.querySelector('.js-output-not-leap');
 // const btnEl = document.querySelector('.js-btn');
 
-// const onBtnElClick = event => {
-//   const year = inputEl.value;
+// const isLeapYear = year => {
 //   const date = new Date(year, 2, 0);
-//   const result = date.getDate() === 29;
-//   if (result) {
+//   return date.getDate() === 29;
+// };
+
+// const onBtnElClick = () => {
+//   const year = inputEl.value;
+
+//   if (isLeapYear(year)) {
 //     outputLeapEl.classList.add('active');
 //     outputNotLeapEl.classList.remove('active');
 //   } else {
 //     outputNotLeapEl.classList.add('active');
 //     outputLeapEl.classList.remove('active');
 //   }
-//   inputEl.value = '';
 // };
 
 // btnEl.addEventListener('click', onBtnElClick);
@@ -642,10 +658,11 @@
 // Task 5.8.5
 // const inputEl = document.querySelector('.js-input');
 // const btnEl = document.querySelector('.js-btn');
+// const selectEl = document.querySelector('#select');
 
-// const onBtnElClick = event => {
-//   const arr = inputEl.value.split(',').map(el => Number(el));
-//   console.log(arr.includes(13));
+// const onBtnElClick = () => {
+//   const arr = inputEl.value.split(',').map(el => el);
+//   console.log(arr.includes(selectEl.value));
 // };
 
 // btnEl.addEventListener('click', onBtnElClick);
@@ -673,7 +690,7 @@
 // const onTextFieldInput = event => {
 //   const { target } = event;
 
-//   +target.value % 2 ? (target.style.borderColor = 'red') : (target.style.borderColor = 'green');
+//   +target.value % 2 ? (target.style.borderColor = 'red') : (target.style.borderColor = 'green'); // BigInt
 // };
 
 // inputEl.addEventListener('input', onTextFieldInput);
@@ -689,7 +706,7 @@
 
 // inputEl.addEventListener('focusout', onInputBlur);
 
-// Task 5.9.5
+// // Task 5.9.5 ???????
 // const textareaEl = document.querySelector('.js-text');
 // const listEl = document.querySelector('.js-list');
 
@@ -697,6 +714,7 @@
 //   const { target } = event;
 //   const regexp = /[\.!?]/;
 //   const arr = target.value.split(regexp).filter(el => el !== ''); //Почему без фильтра последний элемент массива ''?
+//   console.log(arr);
 //   const markup = arr
 //     .map(
 //       el => `
@@ -812,8 +830,8 @@
 // const listEl = document.querySelector('.js-list');
 // const btnEl = document.querySelector('.js-btn');
 
-// const onBtnElClick = array => {
-//   const markup = array
+// const createMarkup = array =>
+//   array
 //     .map(
 //       el => `
 //     <li class='js-list__item'>${el}</li>
@@ -821,10 +839,11 @@
 //     )
 //     .join('');
 
-//   listEl.insertAdjacentHTML('afterbegin', markup);
+// const onBtnElClick = () => {
+//   listEl.insertAdjacentHTML('afterbegin', createMarkup(arr));
 // };
 
-// btnEl.addEventListener('click', () => onBtnElClick(arr));
+// btnEl.addEventListener('click', onBtnElClick);
 
 // Task 6.1.2
 // const listEl = document.querySelector('.js-list');
@@ -848,12 +867,12 @@
 
 // btnEl.addEventListener('click', onBtnElClick);
 
-// Task 6.1.4 ?????????????????
+// Task 6.1.4 !!!!
 // const listEl = document.querySelector('.js-list');
 // const btnEl = document.querySelector('.js-btn');
 
-// const onBtnElClick = event => {
-//   const markup = `<li class='js-list__item'>1</li>`;
+// const onBtnElClick = () => {
+//   const markup = `<li class='js-list__item'>${listEl.children.length + 1}</li>`;
 //   listEl.insertAdjacentHTML('beforeend', markup);
 // };
 
@@ -870,7 +889,7 @@
 // btnEl.addEventListener('click', onBtnElClick);
 
 // Task 6.1.6
-// // const listItemEls = document.querySelectorAll('.js-list__item');
+// const listItemEls = document.querySelectorAll('.js-list__item');
 // const listItemEls = document.getElementsByClassName('js-list__item');
 // const btnEl = document.querySelector('.js-btn');
 
@@ -886,14 +905,14 @@
 
 // Task 6.2.1
 
-// // const table = {
-// //   cols: 5,
-// //   rows: 10,
-// // };
+// const table = {
+//   cols: 5,
+//   rows: 10,
+// };
 // const btnEl = document.querySelector('.js-btn');
 // const containerEl = document.querySelector('.js-container');
 
-// const buildTable = (parent, cols, rows) => {
+// const buildTable = (parent, { cols, rows }) => {
 //   const table = document.createElement('table');
 //   table.classList.add('table');
 
@@ -912,7 +931,7 @@
 // };
 
 // const onBtnElClick = () => {
-//   buildTable(containerEl, 10, 20);
+//   buildTable(containerEl, table);
 // };
 
 // btnEl.addEventListener('click', onBtnElClick);
@@ -1202,7 +1221,7 @@
 
 // inputEl.addEventListener('input', onInputElInput);
 
-// // Task 6.5.3????????????????????????//
+// // Task 6.5.3????????????????????????
 // const btnEl = document.querySelector('.js-btn');
 // const outputEl = document.querySelector('.js-output');
 
@@ -1361,20 +1380,334 @@
 
 // document.addEventListener('keydown', onKeydown);
 
-// Task 6.7.1
-// Task 6.7.2
-// Task 6.7.3
-// Task 6.7.4
+// Task 6.7.1???????????????????
+// const listEl = document.querySelector('.js-list');
 
-// Task 6.8.1
+// const nowDate = new Date();
+// const nowYear = nowDate.getFullYear();
+
+// // прибавить к дате определенное количество дней в JavaScript
+// const currentDate = new Date();
+// currentDate.setDate(currentDate.getDate() + 3);
+// console.log(currentDate);
+
+// Task 6.7.2
+// const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+
+// const outputEl = document.querySelector('.js-output');
+// const btnEl = document.querySelector('.js-btn');
+
+// const onBtnElClick = () => {
+//   const nowDate = new Date();
+//   const nowYear = nowDate.getFullYear();
+//   const nowMonth = nowDate.getMonth();
+//   const lastDay = days[new Date(nowYear, nowMonth + 1, 0).getDay()];
+
+//   outputEl.textContent = lastDay;
+// };
+
+// btnEl.addEventListener('click', onBtnElClick);
+
+// Task 6.7.3?????????????????/ Почему не работает??
+// // Так работает
+// // const onBtnElClick = () => {
+// //     const markup = datesArr.map(content => `<option value="${content}">${content}</option>`).join('');
+// //     selectEl.insertAdjacentHTML('afterbegin', markup);
+// //   };
+
+// const btnEl = document.querySelector('.js-btn');
+// const selectEl = document.querySelector('#js-select');
+
+// const nowDate = new Date();
+// const nowYear = nowDate.getFullYear();
+// const nowMonth = nowDate.getMonth();
+// const numOfDayInCurrentMonth = new Date(nowYear, nowMonth + 1, 0).getDate();
+// const datesArr = [...Array(numOfDayInCurrentMonth)].map((_, idx) => idx + 1);
+
+// const createSelectOption = content => {
+//   `<option value="${content}">${content}</option>`;
+// };
+
+// const onBtnElClick = () => {
+//   const markup = datesArr.map(el => createSelectOption(el)).join('');
+//   selectEl.insertAdjacentHTML('afterbegin', markup);
+// };
+
+// btnEl.addEventListener('click', onBtnElClick);
+
+// Task 6.7.4
+// const inputEl = document.querySelector('.js-input');
+// const outputEl = document.querySelector('.js-output');
+// const btnEl = document.querySelector('.js-btn');
+
+// const onBtnElClick = event => {
+//   const num = parseInt(inputEl.value);
+//   if (num <= 0) {
+//     outputEl.textContent = 'Number must be greater than zero';
+//     return;
+//   }
+//   const str = [...Array(num)].map(el => (el = 0)).join('');
+//   outputEl.textContent = str;
+// };
+
+// btnEl.addEventListener('click', onBtnElClick);
+
+// Task 6.8.1????????????????????
+// const tableEl = document.querySelector('.js-tbody');
+
+// const ontdElClick = event => {
+//   const { target } = event;
+// };
+
+// tableEl.addEventListener('click', ontdElClick);
+
 // Task 6.8.2
+// const btnEl = document.querySelector('.js-btn');
+// const blockEl = document.querySelector('.js-block');
+
+// const onBtnElClick = () => {
+//   let n = +btnEl.getAttribute('data-counter');
+//   if (n % 2 === 1) {
+//     blockEl.classList.add('active');
+//   } else {
+//     blockEl.classList.remove('active');
+//   }
+
+//   n += 1;
+//   btnEl.setAttribute('data-counter', n);
+// };
+
+// btnEl.addEventListener('click', onBtnElClick);
 
 // Task 6.9.1
-// Task 6.9.2
-// Task 6.9.3
-// Task 6.9.4
+// const colors = [
+//   'rgb(127, 255, 212)',
+//   'rgb(255, 150, 13)',
+//   'rgb(130, 200, 255)',
+//   'rgb(125, 125, 125)',
+//   'rgb(150, 179, 240)',
+//   'rgb(150, 179, 10)',
+//   'rgb(200, 179, 30)',
+//   'rgb(100, 150, 200)',
+//   'rgb(190, 170, 250)',
+//   'rgb(240, 199, 250)',
+//   'rgb(200, 255, 220)',
+//   'rgb(190, 179, 230)',
+// ];
 
-// Task 6.10.1
-// Task 6.10.2
-// Task 6.10.3
+// const btnEl = document.querySelector('.js-btn');
+// const blockEl = document.querySelector('.js-block');
+
+// let idx = +btnEl.getAttribute('data-color');
+
+// const onBtnElClick = () => {
+//   if (idx === colors.length) {
+//     idx = 0;
+//   }
+//   blockEl.style.backgroundColor = colors[idx];
+//   idx += 1;
+//   btnEl.setAttribute('data-color', idx);
+// };
+
+// btnEl.addEventListener('click', onBtnElClick);
+
+// Task 6.9.2????????????????
+// const firstInputEl = document.querySelector('.js-first-input');
+// const secondInputEl = document.querySelector('.js-second-input');
+
+// const outputEl = document.querySelector('.js-output');
+
+// const firstDate = firstInputEl.value;
+// const secondDate = new Date(secondInputEl.value).getTime();
+// console.log(firstDate);
+// const diff = (firstDate - secondDate) / (1000 * 3600 * 24);
+// console.log(diff);
+
+// Task 6.9.3 ??????????? Как сделать, чтобы перезаписывало номер клика, а не дописывало один за другим? span и innerHTML?
+// const listEl = document.querySelector('.js-list');
+// let counter = +listEl.dataset.counter;
+
+// const onListItemElClick = event => {
+//   const { target } = event;
+
+//   if (target.nodeName !== 'LI') {
+//     return;
+//   }
+
+//   target.insertAdjacentHTML('beforeend', `- click # ${counter}`);
+//   counter += 1;
+//   listEl.dataset.counter = counter;
+// };
+
+// listEl.addEventListener('click', onListItemElClick);
+
+// Task 6.9.4
+// const listEl = document.querySelector('.js-list');
+
+// const createMarkup = num => {
+//   return ` <li class="js-list__item">item-${num}</li>`;
+// };
+
+// const onListItemElClick = event => {
+//   const listItem = createMarkup(listEl.children.length + 1);
+//   listEl.insertAdjacentHTML('beforeend', listItem);
+// };
+
+// listEl.addEventListener('click', onListItemElClick);
+
+// Task 6.10.1 ??? Как оптимизировать, чтобы не дублировались строки (1574-1576 и 1584-1586)?
+// const inputEl = document.querySelector('.js-input');
+// const btnEl = document.querySelector('.js-btn');
+// const listEl = document.querySelector('.js-list');
+
+// const createMarkup = content => {
+//   return ` <li class="js-list__item">${content}</li>`;
+// };
+
+// const onBtnElClick = () => {
+//   const content = inputEl.value;
+//   if (content === '') {
+//     console.log('Enter something.');
+//     return;
+//   }
+//   if (listEl.lastElementChild === null) {
+//     const listItem = createMarkup(content);
+//     listEl.insertAdjacentHTML('beforeend', listItem);
+//     inputEl.value = '';
+//     return;
+//   }
+//   if (content.length <= listEl.lastElementChild.textContent.length) {
+//     console.log('Not enough symbols.');
+//     inputEl.value = '';
+//     return;
+//   }
+//   const listItem = createMarkup(content);
+//   listEl.insertAdjacentHTML('beforeend', listItem);
+//   inputEl.value = '';
+// };
+
+// btnEl.addEventListener('click', onBtnElClick);
+
+// Task 6.10.2?????????????
+// const btnEl = document.querySelector('.js-btn');
+// const tbodyEl = document.querySelector('.js-tbody');
+// const trEls = document.querySelectorAll('.js-tr');
+
+// const onBtnElClick = () => {
+//   const trArr = [...trEls];
+//   console.log(trArr);
+//   const res = trArr.map((el, idx) =>
+//     idx % 2 ? el.setAttribute('data-idx', 'odd') : el.setAttribute('data-idx', 'even')
+//   );
+//   const result = res.map(el => el.dataset.idx === 'odd' ? el.children)
+// };
+
+// btnEl.addEventListener('click', onBtnElClick);
+
+// Task 6.10.3????????????????????
+// const containerEl = document.querySelector('.js-container');
+
 // Task 6.10.4
+// const textareaEl = document.querySelector('.js-text');
+// const inputEl = document.querySelector('.js-input');
+// const btnEl = document.querySelector('.js-btn');
+// const outputEl = document.querySelector('.js-output');
+
+// const onBtnElClick = () => {
+//   const target = inputEl.value;
+//   const str = textareaEl.value;
+
+//   let pos = 0;
+//   let count = 0;
+
+//   while (true) { // Объясни условие
+//     let foundPos = str.indexOf(target, pos);
+//     if (foundPos === -1) break;
+
+//     count += 1;
+//     pos = foundPos + 1;
+//   }
+//   outputEl.textContent = count;
+// };
+
+// btnEl.addEventListener('click', onBtnElClick);
+
+// Task 7.1.1????????????????
+// const arr = [2, 1, 5, 7, 2, 8, 5, 3, 0];
+
+// const listEl = document.querySelector('.js-list');
+// const btnEl = document.querySelector('.js-btn');
+
+// const createMarkup = array => {
+//   const markup = array
+//     .map(
+//       el => `
+//     <li class="js-list__item">${el}</li>
+//     `
+//     )
+//     .join('');
+//   listEl.insertAdjacentHTML('beforeend', markup);
+// };
+
+// createMarkup(arr);
+
+// const onBtnElClick = () => {
+//   const values = [...listEl.children].map(el => +el.textContent);
+//   const max = Math.max(...values);
+//   const idx = values.indexOf(max);
+//   listEl.children[idx].remove();
+//   console.log(max);
+// };
+
+// btnEl.addEventListener('click', onBtnElClick);
+
+// Task 7.1.2
+// Task 7.1.3
+// Task 7.1.4
+// Task 7.1.5
+
+// Task 7.2.1
+// Task 7.2.2
+// Task 7.2.3
+// Task 7.2.4
+// Task 7.2.5
+
+// Task 7.3.1
+// Task 7.3.2
+// Task 7.3.3
+
+// Task 7.4.1
+// Task 7.4.2
+// Task 7.4.3
+// Task 7.4.4
+// Task 7.4.5
+// Task 7.4.6
+
+// Task 7.5.1
+// Task 7.5.2
+// Task 7.5.3
+// Task 7.5.4
+
+// Task 7.6.1
+// Task 7.6.2
+// Task 7.6.3
+// Task 7.6.4
+
+// Task 7.7.1
+// Task 7.7.2
+// Task 7.7.3
+
+// Task 7.8.1
+// Task 7.8.2
+// Task 7.8.3
+// Task 7.8.4
+
+// Task 7.9.1
+// Task 7.9.2
+// Task 7.9.3
+// Task 7.9.4
+
+// Task 7.10.1
+// Task 7.10.2
+// Task 7.10.3
+// Task 7.10.4
