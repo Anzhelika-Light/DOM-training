@@ -212,7 +212,7 @@
 } */
 
 /* Task 6.10.2 */
-.table {
+/* .table {
   margin-top: 20px;
   border-collapse: collapse;
 }
@@ -228,4 +228,61 @@
 
 .white {
   background-color: white;
+} */
+
+/* Task 7.1.4 */
+/* .table {
+  margin-top: 20px;
+  border-collapse: collapse;
 }
+
+.table .td,
+.table .th {
+  padding: 10px 20px;
+  width: 10%;
+  border: 1px solid black;
+} */
+
+/* Task 7.2.1 */
+/* .active {
+  background-color: red;
+} */
+
+/* Task 7.4.1 */
+/* .active {
+  background-color: red;
+}
+
+.current {
+  background-color: green;
+} */
+
+/* Task 7.4.2 */
+/* .active {
+  color: red;
+} */
+
+/* Task 7.5.2 */
+/* .common-container {
+  display: flex;
+  gap: 5px;
+  justify-content: space-evenly;
+}
+
+.container {
+  width: 10%;
+  border: 1px solid salmon;
+  text-align: center;
+}
+
+.box {
+  width: 100%;
+  margin-top: 10px;
+  height: 30px;
+  background-color: blueviolet;
+  visibility: hidden;
+}
+
+.active {
+  visibility: visible;
+} */

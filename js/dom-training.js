@@ -1061,18 +1061,21 @@
 
 // btnEl.addEventListener('click', onBtnElClick);
 
-// Task 6.3.2???????????????? Как сделать, чтобы номер добавлялся только 1 раз?
+// Task 6.3.2!!!!
 // const listEl = document.querySelector('.js-list');
 
 // const onListItemElClick = event => {
 //   const { target } = event;
-
+//   if (target.getAttribute('clickable')) {
+//     return;
+//   }
 //   const num = [...listEl.children].indexOf(target) + 1;
 
 //   const numEl = document.createElement('span');
 //   numEl.classList.add('js-num');
 //   numEl.textContent = num;
 //   target.append('-', numEl);
+//   target.setAttribute('clickable', true);
 // };
 
 // listEl.addEventListener('click', onListItemElClick);
@@ -1106,14 +1109,24 @@
 
 // btnEl.addEventListener('click', onBtnElClick);
 
-// Task 6.3.5 ??????????????????/
+// Task 6.3.5 !!!!! // input + проверка количества символов / change
 // const inputEl = document.querySelector('.js-input');
 // const outputEl = document.querySelector('.js-output');
 
 // const onInputElInput = event => {
+//   const { target } = event;
+//   if (target.value.length < 10) {
+//     outputEl.textContent = '';
+//     return;
+//   }
+//   if (target.value.length > 10) {
+//     console.log(target.value);
+//     target.value = target.value.slice(0, 10);
+//     return;
+//   }
 //   const nowDate = new Date();
-//   const inputDate = new Date(inputEl.value); // Почему Invalid Date?
-//   console.log(inputDate);
+//   const inputDate = new Date(inputEl.value);
+
 //   if (nowDate - inputDate > 0) {
 //     outputEl.textContent = 'Yes';
 //   } else outputEl.textContent = 'No';
@@ -1131,7 +1144,7 @@
 
 // listEl.addEventListener('click', onListItemClick);
 
-// Task 6.4.2 ????? target / inputEl?
+// Task 6.4.2
 // const listEl = document.querySelector('.js-list');
 // const inputEl = document.querySelector('.js-input');
 
@@ -1221,7 +1234,7 @@
 
 // inputEl.addEventListener('input', onInputElInput);
 
-// // Task 6.5.3????????????????????????
+// // Task 6.5.3!!!!!
 // const btnEl = document.querySelector('.js-btn');
 // const outputEl = document.querySelector('.js-output');
 
@@ -1230,6 +1243,7 @@
 // // const onBtnElClick = event => {
 // //   btnEl.insertAdjacentHTML('afterend', markup());
 // // };
+// const inputList = [];
 
 // const onBtnElClick = event => {
 //   const inputEl = document.createElement('input');
@@ -1237,56 +1251,49 @@
 //   inputEl.type = 'text';
 //   inputEl.addEventListener('input', onInputElInput);
 //   btnEl.after(inputEl);
-
+//   inputList.push(inputEl); // все созданные инпуты
 // };
 
 // const onInputElInput = event => {
-//   console.log(inputEl.value);
+//   // const inputEls = document.querySelectorAll('.js-input');
+//   const values = inputList.map(el => Number(el.value));
+//   const total = values.reduce((sum, el) => sum + el, 0);
+//   outputEl.textContent = total;
+//   console.log(event.target.value);
 // };
 
 // btnEl.addEventListener('click', onBtnElClick);
 
-// Task 6.5.4?????????????????? Правильно ли решила?
+// Task 6.5.4 !!!
 // const containerEl = document.querySelector('.js-container');
 // const inputEls = document.querySelectorAll('.js-input');
 // const btnEl = document.querySelector('.js-btn');
-
-// // const arr = [];
-// // let res = 0;
-
-// // const onInputElChange = event => {
-// //   const { target } = event;
-// //   arr.push(target.value);
-// //   const res = arr.reduce((sum, el) => sum + parseInt(el), 0);
-// //   console.log(arr);
-// //   console.log(res);
-// //   return res;
-// // };
-
-// // containerEl.addEventListener('change', onInputElChange);
+// const spanEl = document.querySelector('.js-btn-total');
 
 // const onBtnElClick = () => {
 //   const res = [...inputEls]
+//     .filter(el => el.value !== '')
 //     .map(el => el.value)
-//     .filter(el => el !== '')
 //     .reduce((sum, el) => sum + parseInt(el), 0);
 //   console.log(res);
-//   btnEl.textContent = res;
+//   spanEl.textContent = res;
 // };
 
 // btnEl.addEventListener('click', onBtnElClick);
 
-// Task 6.5.5 ????????????????/ Как сделать для любого к-ва инпутов? Как в 6.5.4?
+// Task 6.5.5!!!!!!!
 // const containerEl = document.querySelector('.js-container');
 // const firstInputEl = document.querySelector('.js-first-input');
-// const secondInputEl = document.querySelector('.js-second-input');
+// const secondInputEl = document.querySelectorAll('.js-input');
 // const btnEl = document.querySelector('.js-btn');
 // const outputEl = document.querySelector('.js-output');
 
 // const onBtnElClick = () => {
 //   const firstInputValuesArr = firstInputEl.value.trim().split(',');
-//   const secondInputValuesArr = secondInputEl.value.trim().split(',');
-//   const res = firstInputValuesArr.filter(el => secondInputValuesArr.includes(el));
+//   const secondInputValuesArr = [...secondInputEl].map(el => el.value.trim().split(','));
+//   const res = firstInputValuesArr.filter(el =>
+//     secondInputValuesArr.every(item => item.includes(el))
+//   );
 //   outputEl.innerHTML = res;
 // };
 
@@ -1368,17 +1375,29 @@
 
 // tbodyEl.addEventListener('click', onTBodyElClick);
 
-// Task 6.6.4??????????????????Как отследить одновременное нажатие?
+// // Task 6.6.4 !!!!!!!!!!!
 // const textEl = document.querySelector('.js-text');
 // const outputEl = document.querySelector('.js-output');
+// const arr = [];
 
 // const onKeydown = event => {
-//   if (event.shiftKey || event.code === 'Enter') {
-//     console.log('success');
+//   console.log(event.key);
+//   if (event.key === 'Shift' || event.key === 'Enter') {
+//     arr.push(event.key);
+//   }
+//   if (arr.length === 2) {
+//     outputEl.textContent = textEl.value;
+//   }
+// };
+// const onKeyUp = event => {
+//   if (event.key === 'Shift' || event.key === 'Enter') {
+//     const index = arr.indexOf(event.key);
+//     arr.splice(index, 1);
 //   }
 // };
 
 // document.addEventListener('keydown', onKeydown);
+// document.addEventListener('keyup', onKeyUp);
 
 // Task 6.7.1???????????????????
 // const listEl = document.querySelector('.js-list');
@@ -1662,29 +1681,401 @@
 // btnEl.addEventListener('click', onBtnElClick);
 
 // Task 7.1.2
+// const btnEl = document.querySelector('.js-btn');
+// const textEl = document.querySelector('.js-text');
+
+// const onBtnElClick = () => {
+//   const arr = textEl.textContent.split(' ').filter(el => el !== '');
+//   const markup = arr.map(el => `<span>${el}</span>`).join('');
+//   textEl.innerHTML = markup;
+// };
+
+// btnEl.addEventListener('click', onBtnElClick);
+
 // Task 7.1.3
+// const btnEl = document.querySelector('.js-btn');
+// const textEl = document.querySelector('.js-text');
+
+// const onBtnElClick = () => {
+//   const regex = /[^a-z]\/[^a-z]/gi;
+//   const markup = textEl.textContent
+//     .split(' ')
+//     .filter(el => el !== '')
+//     .map(el => (el.match(regex) ? `<span>${el}</span>` : el))
+//     .join(' ');
+//   textEl.innerHTML = markup;
+// };
+
+// btnEl.addEventListener('click', onBtnElClick);
+
 // Task 7.1.4
-// Task 7.1.5
+// const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
 
-// Task 7.2.1
-// Task 7.2.2
-// Task 7.2.3
+// const inputEl = document.querySelector('.js-input');
+// const tableBodyEl = document.querySelector('.js-tbody');
+
+// const createMarkup = date => {
+//   return `
+// <tr class="js-tr">
+//     <th class="js-td td">${date}</th>
+//     <th class="js-td td">${days[date.getDay()]}</th>
+// </tr>
+//     `;
+// };
+
+// const onInputElChange = event => {
+//   const { target } = event;
+//   const date = new Date(target.value);
+//   tableBodyEl.insertAdjacentHTML('beforeend', createMarkup(date));
+//   target.value = '';
+// };
+
+// inputEl.addEventListener('change', onInputElChange);
+
+// Task 7.1.5?????????
+// const createArr = n => {
+//   const result = [];
+//   const arr = [...Array(n)].map((_, idx) => idx + 1);
+
+//   while (n > 0) {
+//     result.push(arr);
+//     n -= 1;
+//   }
+//   return result;
+// };
+// console.log(createArr(3));
+
+// Task 7.2.1?????????????? Как убрать класс active?
+// const numbers = [2, 4, 1, 5, 7, 3, 8, 3, 0, 2];
+
+// const listEl = document.querySelector('.js-list');
+// const inputEl = document.querySelector('.js-input');
+// const btnEl = document.querySelector('.js-btn');
+
+// const createListItem = arr => {
+//   const markup = arr
+//     .map(
+//       el => `
+//       <li class='js-list__item'><span class='js-list__value'>${el}</span></li>
+//       `
+//     )
+//     .join('');
+//   listEl.insertAdjacentHTML('beforeend', markup);
+// };
+
+// createListItem(numbers);
+
+// const valueEl = document.querySelectorAll('.js-list__value');
+
+// // let prevActiveElement = [];
+
+// const onBtnElClick = () => {
+//   const value = inputEl.value;
+//   if (value === '') {
+//     console.log('Enter a number.');
+//     return;
+//   }
+
+//   let activeElIdx = [];
+//   const activeElement = [...valueEl].map((element, idx) => {
+//     if (element.textContent === value) {
+//       activeElIdx.push(idx);
+//       element.parentElement.classList.add('active');
+//     }
+//   });
+
+// //   prevActiveElement = prevActiveElement.push([...valueEl][activeElIdx]);
+// //   console.log(prevActiveElement);
+
+//   if (prevActiveElement !== null) {
+//     prevActiveElement.parentElement.classList.remove('active');
+//   }
+// };
+
+// btnEl.addEventListener('click', onBtnElClick);
+
+// Task 7.2.2 ????? Как сделать, чтобы перезаписывалось содержимое? innerHTML не подходит
+// const listEl = document.querySelector('.js-list');
+// const inputEl = document.querySelector('.js-input');
+
+// const createMarkup = date => {
+//   return `
+//     <li class='js-list__item'>${date}</li>
+//     `;
+// };
+
+// const onInputElChange = () => {
+//   const year = inputEl.value;
+//   for (let month = 0; month < 12; month += 1) {
+//     const date = new Date(year, month, 13);
+//     if (date.getDay() === 5) {
+//       listEl.insertAdjacentHTML('beforeend', createMarkup(date));
+//     }
+//   }
+// };
+
+// inputEl.addEventListener('change', onInputElChange);
+
+// Task 7.2.3???????????
+// const fieldsetEl = document.querySelector('#js-language');
+// const outputEl = document.querySelector('.js-output');
+
+// const onFieldsetElClick = event => {
+//   const { target } = event;
+
+//   if (target.nodeName !== 'INPUT' || target.nodeName !== 'LABEL') {
+//     return;
+//   }
+//   console.log(target.textContent);
+//   outputEl.textContent = target;
+// };
+
+// fieldsetEl.addEventListener('click', onFieldsetElClick);
+
 // Task 7.2.4
+// const createArr = n => {
+//   const res = [];
+//   const arr = [];
+//   while (arr.length !== n) {
+//     arr.push('x');
+//     res.push([...arr]);
+//   }
+//   return res;
+// };
+
+// console.log(createArr(7));
+
 // Task 7.2.5
+// const textEls = document.querySelectorAll('.js-text');
 
-// Task 7.3.1
+// const res = [...textEls].map(el => el.textContent);
+// console.log(res);
+
+// Task 7.3.1???????????????
+// const textEl = document.querySelector('.js-text');
+// const btnEl = document.querySelector('.js-btn');
+
+// const onBtnElClick = () => {
+//   const text = textEl.textContent;
+//   console.log(text);
+// };
+
+// btnEl.addEventListener('click', onBtnElClick);
+
 // Task 7.3.2
+// const getArr = (min, max, n) => {
+//   const getRandomNum = (min, max) => Math.floor(Math.random() * (max - min) + min);
+//   const arr = [];
+
+//   if (max - min < n) {
+//     console.log('Impossible to push only unique numbers to the array.');
+//     return arr;
+//   }
+//   while (arr.length !== n) {
+//     let num = getRandomNum(min, max);
+//     if (!arr.includes(num)) {
+//       arr.push(num);
+//     }
+//   }
+//   return arr;
+// };
+
+// console.log(getArr(3, 10, 5));
+
 // Task 7.3.3
+// const containerEl = document.querySelector('.js-container');
 
-// Task 7.4.1
+// let data = [
+//   {
+//     text: '111',
+//     href: '1.html',
+//   },
+//   {
+//     text: '222',
+//     href: '2.html',
+//   },
+//   {
+//     text: '333',
+//     href: '3.html',
+//   },
+// ];
+
+// const createMarkup = content => {
+//   const markup = content
+//     .map(
+//       el => `
+//   <a href=${el.href}>${el.text}</a>
+//   `
+//     )
+//     .join('');
+//   return markup;
+// };
+
+// containerEl.innerHTML = createMarkup(data);
+
+// Task 7.4.1???????
+// const listEl = document.querySelector('.js-list');
+
+// const currentDate = new Date();
+// const lastDayOfCurrentMonth = new Date(
+//   currentDate.getFullYear(),
+//   currentDate.getMonth() + 1,
+//   0
+// ).getDate();
+
+// const arr = [];
+// for (let i = 1; i <= lastDayOfCurrentMonth; i += 1) {
+//   arr.push(new Date(currentDate.getFullYear(), currentDate.getMonth(), i));
+// }
+
+// // Сп.1 Как вставить в ДОМ-дерево?
+// const createLiElement = date => {
+//   const listItemEl = document.createElement('li');
+//   listItemEl.textContent = date;
+//   listItemEl.classList.add('js-list__item');
+//   if (date.getDay() === 6 || date.getDay() === 0) listItemEl.classList.add('active');
+//   if (date === currentDate) listItemEl.classList.add('current');
+//   return listItemEl;
+// };
+
+// console.log(createLiElement(new Date()));
+
+// const createMarkup = arr => {
+//   const markup = arr.map(date => createLiElement(date)).join('');
+//   console.log(markup);
+//   listEl.append(markup);
+// };
+
+// createMarkup(arr);
+
+// // Сп.2 Как еще и текущий день отметить другим цветом?
+// // const createMarkup = arr => {
+// //   const markup = arr
+// //     .map(date =>
+// //       date.getDay() === 6 || date.getDay() === 0
+// //         ? `
+// // <li class='js-list__item active'>${date}</li>
+// // `
+// //         : `
+// // <li class='js-list__item'>${date}</li>
+// // `
+// //     )
+// //     .join('');
+
+// //   listEl.insertAdjacentHTML('beforeend', markup);
+// // };
+
+// // createMarkup(arr);
+
 // Task 7.4.2
-// Task 7.4.3
-// Task 7.4.4
-// Task 7.4.5
-// Task 7.4.6
+// const textEl = document.querySelector('.js-text');
 
-// Task 7.5.1
-// Task 7.5.2
+// const wrapInSpan = () => {
+//   const arr = textEl.textContent.split(' ').filter(el => el !== '');
+//   const markup = arr.map(el => `<span class='js-target'>${el} </span>`).join('');
+//   textEl.innerHTML = markup;
+// };
+
+// wrapInSpan();
+
+// let prevTarget = null;
+
+// const onWordClick = event => {
+//   const { target } = event;
+//   if (target === prevTarget) {
+//     target.classList.toggle('active');
+//     return;
+//   }
+
+//   if (prevTarget !== null) {
+//     prevTarget.classList.remove('active');
+//   }
+//   target.classList.add('active');
+
+//   prevTarget = target;
+// };
+
+// textEl.addEventListener('click', onWordClick);
+
+// Task 7.4.3
+// const inputEl = document.querySelector('.js-input');
+// const btnEl = document.querySelector('.js-btn');
+// const outputEl = document.querySelector('.js-output');
+
+// const onBtnElClick = event => {
+//   const value = inputEl.value;
+//   const arr = value.split('');
+//   const firstHalfSum = [...arr]
+//     .splice(0, arr.length / 2)
+//     .reduce((sum, el) => sum + parseInt(el), 0);
+//   const secondHalfSum = [...arr]
+//     .splice(arr.length / 2, arr.length / 2)
+//     .reduce((sum, el) => sum + parseInt(el), 0);
+//   if (firstHalfSum === secondHalfSum) {
+//     outputEl.textContent = 'Lucky ticket!';
+//   } else {
+//     outputEl.textContent = 'Try next time.';
+//   }
+// };
+
+// btnEl.addEventListener('click', onBtnElClick);
+
+// Task 7.4.4
+// const inputEl = document.querySelector('.js-input');
+
+// const onInputElInput = event => {
+//   const { target } = event;
+//   if (target.value.length === 10) {
+//     target.setAttribute('disabled', true);
+//   }
+// };
+
+// inputEl.addEventListener('input', onInputElInput);
+
+// Task 7.4.5????? Куда вписать setInterval?
+// const inputEl = document.querySelector('.js-input');
+// const btnEl = document.querySelector('.js-btn');
+// const outputEl = document.querySelector('.js-output');
+
+// const onBtnElClick = () => {
+//   let num = +inputEl.value;
+
+//   while (num >= 0) {
+//     outputEl.textContent = num;
+//     console.log(num);
+//     num -= 1;
+//   }
+// };
+
+// btnEl.addEventListener('click', onBtnElClick);
+
+// Task 7.4.6
+// const createArr = n => {
+//   const res = [];
+//   const arr = [];
+//   while (arr.length !== n) {
+//     arr.push(arr.length + 1);
+//     res.push([...arr]);
+//   }
+//   return res;
+// };
+
+// console.log(createArr(7));
+
+// Task 7.5.1?????????????????
+
+// Task 7.5.2???????? Як обрати правильний div?
+// const commonContEl = document.querySelector('.js-common-container');
+
+// const onBtnElClick = event => {
+//   const { target } = event;
+//   if (target.nodeName !== 'BUTTON') {
+//     return;
+//   }
+// };
+
+// commonContEl.addEventListener('click', onBtnElClick);
+
 // Task 7.5.3
 // Task 7.5.4
 
