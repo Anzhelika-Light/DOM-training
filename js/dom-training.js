@@ -1406,9 +1406,13 @@
 // const nowYear = nowDate.getFullYear();
 
 // // прибавить к дате определенное количество дней в JavaScript
-// const currentDate = new Date();
-// currentDate.setDate(currentDate.getDate() + 3);
-// console.log(currentDate);
+// const date = new Date(nowYear, 0, 1);
+// date.setDate(6 - date.getDay()); // Получила первую субботу
+// listEl.insertAdjacentHTML(
+//   'beforeend',
+//   `<li class='js-list__item'>${date.toLocaleDateString()}</li>`
+// );
+// date.setDate(date.getDate() + 1);
 
 // Task 6.7.2
 // const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
@@ -1427,12 +1431,7 @@
 
 // btnEl.addEventListener('click', onBtnElClick);
 
-// Task 6.7.3?????????????????/ Почему не работает??
-// // Так работает
-// // const onBtnElClick = () => {
-// //     const markup = datesArr.map(content => `<option value="${content}">${content}</option>`).join('');
-// //     selectEl.insertAdjacentHTML('afterbegin', markup);
-// //   };
+// Task 6.7.3 !!!!!!!!!!!!!!!!!!!
 
 // const btnEl = document.querySelector('.js-btn');
 // const selectEl = document.querySelector('#js-select');
@@ -1441,14 +1440,16 @@
 // const nowYear = nowDate.getFullYear();
 // const nowMonth = nowDate.getMonth();
 // const numOfDayInCurrentMonth = new Date(nowYear, nowMonth + 1, 0).getDate();
-// const datesArr = [...Array(numOfDayInCurrentMonth)].map((_, idx) => idx + 1);
+// const datesArr = Array(numOfDayInCurrentMonth)
+//   .fill(0)
+//   .map((_, idx) => idx + 1);
 
-// const createSelectOption = content => {
-//   `<option value="${content}">${content}</option>`;
-// };
+// const createSelectOption = content => `<option value="${content}">${content}</option>`;
 
 // const onBtnElClick = () => {
-//   const markup = datesArr.map(el => createSelectOption(el)).join('');
+//   const markup = datesArr.map(createSelectOption).join('');
+
+//   console.log(markup);
 //   selectEl.insertAdjacentHTML('afterbegin', markup);
 // };
 
@@ -1471,11 +1472,36 @@
 
 // btnEl.addEventListener('click', onBtnElClick);
 
-// Task 6.8.1????????????????????
+// Task 6.8.1 !!!!!!!!!!!!
 // const tableEl = document.querySelector('.js-tbody');
+
+// let pressedKey = null;
+
+// document.addEventListener('keydown', e => {
+//   if (e.key === 'Shift' || e.key === 'Control') {
+//     pressedKey = e.key;
+//   }
+// });
+
+// document.addEventListener('keyup', e => {
+//   if (e.key === 'Shift' || e.key === 'Control') {
+//     pressedKey = null;
+//   }
+// });
 
 // const ontdElClick = event => {
 //   const { target } = event;
+//   if (target.nodeName !== 'TD' || !pressedKey) {
+//     return;
+//   }
+//   if (pressedKey === 'Shift') {
+//     target.classList.toggle('red');
+//     target.classList.remove('green');
+//   }
+//   if (pressedKey === 'Control') {
+//     target.classList.toggle('green');
+//     target.classList.remove('red');
+//   }
 // };
 
 // tableEl.addEventListener('click', ontdElClick);
@@ -1530,32 +1556,39 @@
 
 // btnEl.addEventListener('click', onBtnElClick);
 
-// Task 6.9.2????????????????
+// Task 6.9.2 !!!!!!!!!!!!!!
 // const firstInputEl = document.querySelector('.js-first-input');
 // const secondInputEl = document.querySelector('.js-second-input');
-
 // const outputEl = document.querySelector('.js-output');
 
-// const firstDate = firstInputEl.value;
-// const secondDate = new Date(secondInputEl.value).getTime();
-// console.log(firstDate);
-// const diff = (firstDate - secondDate) / (1000 * 3600 * 24);
-// console.log(diff);
+// const onSecondInputElChange = event => {
+//   const firstDate = new Date(firstInputEl.value);
+//   const secondDate = new Date(secondInputEl.value);
+//   const diff = (firstDate - secondDate) / (1000 * 3600 * 24);
+//   outputEl.textContent = Math.abs(diff);
+// };
 
-// Task 6.9.3 ??????????? Как сделать, чтобы перезаписывало номер клика, а не дописывало один за другим? span и innerHTML?
+// secondInputEl.addEventListener('change', onSecondInputElChange);
+
+// Task 6.9.3 !!!!!!!!!!!!!!!!!!!!
 // const listEl = document.querySelector('.js-list');
 // let counter = +listEl.dataset.counter;
 
 // const onListItemElClick = event => {
 //   const { target } = event;
-
 //   if (target.nodeName !== 'LI') {
 //     return;
 //   }
 
-//   target.insertAdjacentHTML('beforeend', `- click # ${counter}`);
-//   counter += 1;
-//   listEl.dataset.counter = counter;
+//   const { clicked } = target.dataset;
+//   if (!clicked) {
+//     target.dataset.clicked = '1';
+//     return target.insertAdjacentHTML('beforeend', `<span class='js-clicked'> - click # 1</span>`);
+//   }
+//   const newValue = Number(clicked) + 1;
+//   target.dataset.clicked = newValue;
+//   const spanEl = target.querySelector('.js-clicked');
+//   spanEl.textContent = ` - click # ${newValue}`;
 // };
 
 // listEl.addEventListener('click', onListItemElClick);
@@ -1574,7 +1607,7 @@
 
 // listEl.addEventListener('click', onListItemElClick);
 
-// Task 6.10.1 ??? Как оптимизировать, чтобы не дублировались строки (1574-1576 и 1584-1586)?
+// Task 6.10.1 !!!!!!!!!!!!!!!!!!
 // const inputEl = document.querySelector('.js-input');
 // const btnEl = document.querySelector('.js-btn');
 // const listEl = document.querySelector('.js-list');
@@ -1589,13 +1622,10 @@
 //     console.log('Enter something.');
 //     return;
 //   }
-//   if (listEl.lastElementChild === null) {
-//     const listItem = createMarkup(content);
-//     listEl.insertAdjacentHTML('beforeend', listItem);
-//     inputEl.value = '';
-//     return;
-//   }
-//   if (content.length <= listEl.lastElementChild.textContent.length) {
+
+//   const prevLength = !listEl.lastElementChild ? 0 : listEl.lastElementChild.textContent.length;
+
+//   if (content.length <= prevLength) {
 //     console.log('Not enough symbols.');
 //     inputEl.value = '';
 //     return;
@@ -1618,7 +1648,7 @@
 //   const res = trArr.map((el, idx) =>
 //     idx % 2 ? el.setAttribute('data-idx', 'odd') : el.setAttribute('data-idx', 'even')
 //   );
-//   const result = res.map(el => el.dataset.idx === 'odd' ? el.children)
+//   //   const result = res.map(el => el.dataset.idx === 'odd' ? el.children)
 // };
 
 // btnEl.addEventListener('click', onBtnElClick);
@@ -1651,7 +1681,7 @@
 
 // btnEl.addEventListener('click', onBtnElClick);
 
-// Task 7.1.1????????????????
+// Task 7.1.1 !!!!!!!!!!!!!!!!!
 // const arr = [2, 1, 5, 7, 2, 8, 5, 3, 0];
 
 // const listEl = document.querySelector('.js-list');
@@ -1670,12 +1700,22 @@
 
 // createMarkup(arr);
 
+// const getAllIdx = (arr, value) =>
+//   arr.reduce((acc, item, idx) => (item === value ? [...acc, idx] : acc), []);
+
+// const removeElsByIdx = (els, idxArr) =>
+//   els.forEach((element, idx) => {
+//     if (idxArr.includes(idx)) element.remove();
+//   });
+
 // const onBtnElClick = () => {
+//   const elements = [...listEl.children];
+//   if (elements.length) return;
+
 //   const values = [...listEl.children].map(el => +el.textContent);
 //   const max = Math.max(...values);
-//   const idx = values.indexOf(max);
-//   listEl.children[idx].remove();
-//   console.log(max);
+//   const idx = getAllIdx(values, max);
+//   removeElsByIdx([...listEl.children], idx);
 // };
 
 // btnEl.addEventListener('click', onBtnElClick);
